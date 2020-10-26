@@ -1,0 +1,19 @@
+// Jest Snapshot v1, https://goo.gl/fbAQLP
+
+exports[`<Home /> renders and matches snapshot 1`] = `
+<div
+  class="home"
+>
+  <h1 />
+  <div
+    class="section"
+  >
+    <p>
+      This is a counter: 0
+    </p>
+    <button>
+      Increment
+    </button>
+  </div>
+</div>
+`;

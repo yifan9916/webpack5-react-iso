@@ -1,0 +1,21 @@
+version: '2.4'
+
+services:
+  node:
+    build:
+      context: .
+      dockerfile: Dockerfile
+      target: dev
+    ports:
+      - 3000:3000
+      - 3001:3001
+    volumes:
+      - .:/node/app
+      # hide the host node_modules from the container
+      # create an anonymous volume (empty volume)
+      # by putting a volume inside a bind mount
+      # when the container is running the node_modules in the /app folder will be empty
+      # forcing node to look up a directory for the modules
+
+      # will use host node_modules if this line is not present
+      - /node/app/node_modules
