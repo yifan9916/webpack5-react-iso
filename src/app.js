@@ -1,39 +1,25 @@
+import fs from 'fs-extra';
 import path from 'path';
 import express from 'express';
-import helmet from 'helmet';
-import logger from 'morgan';
 import serialize from 'serialize-javascript';
 
 import React from 'react';
 import ReactDOMServer from 'react-dom/server';
 import Helmet from 'react-helmet';
 
-import {
-  initWebpackManifest,
-  renderWebpackRuntime,
-  webpackManifest,
-} from './webpack-manifest';
-
 import HomeContext from './home-context';
 import Home from './Home';
 
 const PUBLIC_DIR = path.resolve(`${process.env.CLIENT_OUTPUT_PATH}/assets`);
-const isDev = process.env.NODE_ENV === 'development';
-
 const INITIAL_DATA_PROPERTY = '__INITIAL_DATA__';
 
-initWebpackManifest();
+const webpackManifest = fs.readJSONSync(
+  `./${process.env.CLIENT_OUTPUT_PATH}/assets/manifest.json`,
+);
 
 const app = express();
 
-app.use(
-  helmet({
-    // non-dev domain, automatically redirects to https: https://tools.ietf.org/html/rfc2606
-    // https://mathiasbynens.be/notes/json-dom-csp
-    contentSecurityPolicy: false,
-  }),
-);
-app.use(logger(isDev ? 'dev' : 'combined'));
+app.disable('x-powered-by');
 app.disable('etag');
 
 app.use('/assets', express.static(PUBLIC_DIR));
@@ -54,6 +40,9 @@ app.get('/', (req, res) => {
   );
   const helmet = Helmet.renderStatic();
 
+  const renderRuntimeTag = webpackManifest['runtime.js']
+    ? `<script src="${webpackManifest['runtime.js']}" defer></script>`
+    : '';
   const renderClientCssTag = webpackManifest['main.css']
     ? `<link rel="stylesheet" href="${webpackManifest['main.css']}">`
     : '';
@@ -71,11 +60,11 @@ app.get('/', (req, res) => {
         ${helmet.title.toString()}
 
         ${renderClientCssTag}
-        ${renderWebpackRuntime()}
+        ${renderRuntimeTag}
         ${renderVendorsJsTag}
         <script src="${webpackManifest['main.js']}" defer></script>
       </head>
-  
+
       <body>
         <div id="app">${appMarkup}</div>
         <script>

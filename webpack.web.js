@@ -21,6 +21,24 @@ const ASSET_PATH = isDev
   ? `http://${DEV_SERVER_HOST}:${DEV_SERVER_PORT}/assets/`
   : 'assets/';
 
+const devServerOptions = {
+  compress: true,
+  contentBase: path.resolve(__dirname, CLIENT_OUTPUT_PATH),
+  disableHostCheck: true,
+  // enables node server to access dev assets from wds
+  headers: { 'Access-Control-Allow-Origin': '*' },
+  historyApiFallback: true,
+  host: DEV_SERVER_HOST,
+  hot: true,
+  overlay: {
+    error: true,
+  },
+  port: DEV_SERVER_PORT,
+  stats: 'errors-only',
+  // quiet: true,
+  writeToDisk: true,
+};
+
 const optimizationDev = {
   removeAvailableModules: false,
   removeEmptyChunks: false,
@@ -64,25 +82,7 @@ module.exports = {
     main: './src/client.jsx',
   },
   devtool: isDev && 'inline-source-map',
-  devServer: isDev
-    ? {
-        compress: true,
-        contentBase: path.resolve(__dirname, CLIENT_OUTPUT_PATH),
-        disableHostCheck: true,
-        // enables node server to access dev assets from wds
-        headers: { 'Access-Control-Allow-Origin': '*' },
-        historyApiFallback: true,
-        host: DEV_SERVER_HOST,
-        hot: true,
-        overlay: {
-          error: true,
-        },
-        port: DEV_SERVER_PORT,
-        stats: 'errors-only',
-        // quiet: true,
-        writeToDisk: true,
-      }
-    : {},
+  devServer: isDev ? devServerOptions : {},
   module: {
     rules: [
       {
@@ -142,11 +142,11 @@ module.exports = {
         chunkFilename: 'stylesheets/[name].styles.[contenthash:8].css',
       }),
   ].filter(Boolean),
-  stats: 'errors-only',
+  stats: isDev ? 'errors-only' : 'normal',
   output: {
     filename: isDev
       ? 'javascript/[name].bundle.js'
-      : 'javascript/[name].bundle-[chunkhash:8].js',
+      : 'javascript/[name].bundle.[chunkhash:8].js',
     chunkFilename: isDev
       ? 'javascript/[name].chunk.js'
       : 'javascript/[name].chunk.[chunkhash:8].js',

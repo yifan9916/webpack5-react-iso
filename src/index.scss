@@ -43,21 +43,6 @@ a:active {
   text-decoration: none;
 }
 
-:root {
-  --font-size-step-up-5: 2rem;
-  --font-size-step-up-4: 1.7511rem;
-  --font-size-step-up-3: 1.5157rem;
-  --font-size-step-up-2: 1.3195rem;
-  --font-size-step-up-1: 1.1487rem;
-
-  /* baseline: 1rem */
-  --font-size-step-down-1: 0.8706rem;
-  --font-size-step-down-2: 0.7579rem;
-  --font-size-step-down-3: 0.6599rem;
-  --font-size-step-down-4: 0.5745rem;
-  --font-size-step-down-5: 0.5rem;
-}
-
 /* https://css-tricks.com/snippets/css/system-font-stack/ */
 @font-face {
   /* define the 'system' font family */

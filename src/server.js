@@ -12,9 +12,6 @@ const server = http.createServer(app);
 // node by default doesn't handle SIGINT/SIGTERM
 // docker containers use SIGINT and SIGTERM to properly exit
 
-// quit on ctrl-c when running docker in terminal
-// quit properly on docker stop
-
 SIGNALS.forEach((signal) => {
   process.on(signal, () => {
     console.log(
@@ -39,7 +36,7 @@ const shutdown = () => {
 };
 
 server.listen(PORT, () => {
-  console.log(`Server is up: http://0.0.0.0:${PORT}`);
+  console.log(`Server is up on PORT: ${PORT}`);
 });
 
 if (import.meta.webpackHot) {

@@ -80,7 +80,7 @@ module.exports = {
         entryName: 'server',
       }),
   ].filter(Boolean),
-  stats: 'errors-only',
+  stats: isDev ? 'errors-only' : 'normal',
   output: {
     filename: '[name].js',
     chunkFilename: '[name].chunk.js',
