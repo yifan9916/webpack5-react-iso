@@ -3,7 +3,7 @@
 exports[`renders and matches snapshot 1`] = `
 <div>
   <div
-    class="home"
+    class="component"
   >
     <h1 />
     <div

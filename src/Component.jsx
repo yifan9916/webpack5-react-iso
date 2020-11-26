@@ -1,20 +1,20 @@
 import React, { useState } from 'react';
 import Helmet from 'react-helmet';
 
-import { useHomeContext } from './home-context';
+import { useAppContext } from './app-context';
 
 import './index.scss';
-import styles from './Home.module.scss';
+import styles from './component.module.scss';
 
-const Home = () => {
-  const appContext = useHomeContext();
+const Component = () => {
+  const appContext = useAppContext();
 
   return (
     <>
       <Helmet>
-        <title>Home</title>
+        <title>React App</title>
       </Helmet>
-      <div className={styles.home}>
+      <div className={styles.component}>
         <h1>{appContext.title}</h1>
         <Section />
       </div>
@@ -37,4 +37,4 @@ const Section = () => {
   );
 };
 
-export default Home;
+export { Component };

@@ -1,10 +1,10 @@
 import React from 'react';
 import { render } from '@testing-library/react';
 
-import Home from '../../src/Home';
+import { Component } from '../../src/Component';
 
 test('renders and matches snapshot', () => {
-  const { container } = render(<Home />);
+  const { container } = render(<Component />);
 
   expect(container).toMatchSnapshot();
 });

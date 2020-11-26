@@ -7,8 +7,8 @@ import React from 'react';
 import ReactDOMServer from 'react-dom/server';
 import Helmet from 'react-helmet';
 
-import HomeContext from './home-context';
-import Home from './Home';
+import { AppContext } from './app-context';
+import { Component } from './Component';
 
 const PUBLIC_DIR = path.resolve(`${process.env.CLIENT_OUTPUT_PATH}/assets`);
 const INITIAL_DATA_PROPERTY = '__INITIAL_DATA__';
@@ -34,9 +34,9 @@ app.get('/', (req, res) => {
   };
 
   const appMarkup = ReactDOMServer.renderToString(
-    <HomeContext.Provider value={initialProps}>
-      <Home />
-    </HomeContext.Provider>,
+    <AppContext.Provider value={initialProps}>
+      <Component />
+    </AppContext.Provider>,
   );
   const helmet = Helmet.renderStatic();
 

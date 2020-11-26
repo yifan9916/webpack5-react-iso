@@ -1,17 +1,17 @@
 import React from 'react';
 import ReactDOM from 'react-dom';
 
-import HomeContext from './home-context';
-import Home from './Home';
+import { AppContext } from './app-context';
+import { Component } from './Component';
 
 document.addEventListener('DOMContentLoaded', () => {
   const appRoot = document.getElementById('app');
   const initialData = window.__INITIAL_DATA__;
 
   ReactDOM.hydrate(
-    <HomeContext.Provider value={initialData}>
-      <Home />
-    </HomeContext.Provider>,
+    <AppContext.Provider value={initialData}>
+      <Component />
+    </AppContext.Provider>,
     appRoot,
   );
 });
