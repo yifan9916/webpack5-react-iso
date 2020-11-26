@@ -1,12 +1,10 @@
 import React from 'react';
-import { render } from 'enzyme';
+import { render } from '@testing-library/react';
 
 import Home from '../../src/Home';
 
-describe('<Home />', () => {
-  it('renders and matches snapshot', () => {
-    const component = render(<Home />);
+test('renders and matches snapshot', () => {
+  const { container } = render(<Home />);
 
-    expect(component).toMatchSnapshot();
-  });
+  expect(container).toMatchSnapshot();
 });

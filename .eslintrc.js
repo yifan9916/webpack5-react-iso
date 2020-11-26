@@ -4,6 +4,8 @@ module.exports = {
     'plugin:prettier/recommended',
     'plugin:react/recommended',
     'plugin:react-hooks/recommended',
+    'plugin:testing-library/recommended',
+    'plugin:testing-library/react',
   ],
   env: {
     browser: true,
