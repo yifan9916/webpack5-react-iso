@@ -1,7 +1,7 @@
 FROM node:14-alpine as base
 
 LABEL org.opencontainers.image.authors=yifan.9916@gmail.com
-LABEL org.opencontainers.image.title="Webpack5 React SSR"
+LABEL org.opencontainers.image.title="Webpack5 React Iso"
 LABEL org.opencontainers.image.licenses=ISC
 LABEL yifan.nodeversion=$NODE_VERSION
 
