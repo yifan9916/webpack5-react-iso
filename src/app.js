@@ -7,6 +7,7 @@ import React from 'react';
 import ReactDOMServer from 'react-dom/server';
 import Helmet from 'react-helmet';
 
+import { apolloServer } from './apollo';
 import { AppContext } from './app-context';
 import { Component } from './Component';
 
@@ -27,6 +28,8 @@ app.use('/assets', express.static(PUBLIC_DIR));
 app.get('/healthz', (req, res) => {
   res.send({ message: 'Ok!' });
 });
+
+apolloServer.applyMiddleware({ app, path: '/api' });
 
 app.get('/', (req, res) => {
   const initialProps = {
