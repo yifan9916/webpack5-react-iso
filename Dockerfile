@@ -11,9 +11,9 @@ ENV NODE_ENV=production \
   PATH=/node/node_modules/.bin:$PATH
 RUN apk add --no-cache tini
 WORKDIR /node
-COPY package*.json ./
+COPY package.json yarn.lock ./
 RUN yarn config list \
-  && yarn --production \
+  && yarn install --production --frozen-lockfile \
   && yarn cache clean --force
 ENTRYPOINT ["/sbin/tini", "--"]
 
@@ -21,7 +21,7 @@ FROM base as dev
 WORKDIR /node/app
 ENV NODE_ENV=development
 RUN yarn config list \
-  && yarn \
+  && yarn install --frozen-lockfile \
   && yarn cache clean --force
 CMD ["yarn", "start"]
 
