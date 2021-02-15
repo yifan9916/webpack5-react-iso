@@ -7,7 +7,6 @@ import React from 'react';
 import ReactDOMServer from 'react-dom/server';
 import Helmet from 'react-helmet';
 
-import { AppContext } from './app-context';
 import { Component } from './Component';
 
 const PUBLIC_DIR = path.resolve(`${process.env.CLIENT_OUTPUT_PATH}/assets`);
@@ -33,11 +32,7 @@ app.get('/', (req, res) => {
     title: 'Title',
   };
 
-  const appMarkup = ReactDOMServer.renderToString(
-    <AppContext.Provider value={initialProps}>
-      <Component />
-    </AppContext.Provider>,
-  );
+  const appMarkup = ReactDOMServer.renderToString(<Component />);
   const helmet = Helmet.renderStatic();
 
   const renderRuntimeTag = webpackManifest['runtime.js']

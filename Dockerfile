@@ -1,10 +1,5 @@
 FROM node:14-alpine as base
 
-LABEL org.opencontainers.image.authors=yifan.9916@gmail.com
-LABEL org.opencontainers.image.title="Webpack5 React Iso"
-LABEL org.opencontainers.image.licenses=ISC
-LABEL yifan.nodeversion=$NODE_VERSION
-
 EXPOSE 3000 3001
 ENV NODE_ENV=production \
   PORT=3000 \
@@ -37,6 +32,12 @@ ENV NODE_ENV=production
 RUN yarn build
 
 FROM base as prod
+
+LABEL org.opencontainers.image.authors=yifan.9916@gmail.com
+LABEL org.opencontainers.image.title="React JS iso"
+LABEL org.opencontainers.image.licenses=MIT
+LABEL yifan.nodeversion=$NODE_VERSION
+
 WORKDIR /node/app
 COPY healthcheck.js ./
 COPY --from=source /node/app/dist .

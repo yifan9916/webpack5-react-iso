@@ -3,14 +3,9 @@ import app from './app';
 
 const PORT = process.env.PORT || 3000;
 
-// https://www.gnu.org/software/libc/manual/html_node/Termination-Signals.html
 const SIGNALS = ['SIGINT', 'SIGTERM'];
 
 const server = http.createServer(app);
-
-// you need this code so node will watch for exit signals
-// node by default doesn't handle SIGINT/SIGTERM
-// docker containers use SIGINT and SIGTERM to properly exit
 
 SIGNALS.forEach((signal) => {
   process.on(signal, () => {

@@ -5,7 +5,9 @@ exports[`renders and matches snapshot 1`] = `
   <div
     class="component"
   >
-    <h1 />
+    <h1>
+      Component
+    </h1>
     <div
       class="section"
     >

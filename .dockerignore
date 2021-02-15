@@ -1,10 +1,3 @@
-# https://docs.docker.com/engine/reference/builder/#dockerignore-file
-
-# can safely COPY in both the .git directory and .env file when using multi-stage build
-# just do not copy it to the final prod stage
-# .git*
-# *.env*
-
 *docker-compose*
 .dockerignore
 *Dockerfile*

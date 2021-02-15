@@ -1,26 +1,20 @@
 import React, { useState } from 'react';
 import Helmet from 'react-helmet';
 
-import { useAppContext } from './app-context';
-
 import './index.scss';
 import styles from './component.module.scss';
 
-const Component = () => {
-  const appContext = useAppContext();
-
-  return (
-    <>
-      <Helmet>
-        <title>React App</title>
-      </Helmet>
-      <div className={styles.component}>
-        <h1>{appContext.title}</h1>
-        <Section />
-      </div>
-    </>
-  );
-};
+const Component = () => (
+  <>
+    <Helmet>
+      <title>React App</title>
+    </Helmet>
+    <div className={styles.component}>
+      <h1>Component</h1>
+      <Section />
+    </div>
+  </>
+);
 
 const Section = () => {
   const [count, setCount] = useState(0);

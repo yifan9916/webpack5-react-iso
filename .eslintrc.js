@@ -1,11 +1,13 @@
 module.exports = {
   extends: [
     'eslint:recommended',
-    'plugin:prettier/recommended',
     'plugin:react/recommended',
+    'plugin:jsx-a11y/recommended',
     'plugin:react-hooks/recommended',
+    'prettier/@typescript-eslint',
     'plugin:testing-library/recommended',
     'plugin:testing-library/react',
+    'plugin:prettier/recommended',
   ],
   env: {
     browser: true,

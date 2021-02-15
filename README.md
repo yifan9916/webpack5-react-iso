@@ -1,8 +1,6 @@
-# React SSR setup
+# Full Stack boilerplate
 
-An implementation of a universal React app setup for self-study.
-
-razzle and Next.js were used as reference.
+An example Docker/Node.js setup for a full stack React app (based on razzle and Next.js).
 
 ## How to run it locally
 
